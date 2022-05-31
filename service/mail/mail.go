@@ -77,7 +77,8 @@ func (m Mail) Send(ctx context.Context, subject, message string) error {
 		err = ctx.Err()
 	default:
 		if m.tls {
-			serverName, _, err := net.SplitHostPort(m.smtpHostAddr)
+			var serverName string
+			serverName, _, err = net.SplitHostPort(m.smtpHostAddr)
 			if err != nil {
 				return err
 			}
